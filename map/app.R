@@ -49,8 +49,15 @@ total_incidents_shape <- left_join(total_per_state_year, state_shape, by = c("st
 ui_map <- fluidPage(
   titlePanel("Gun Violence Incidents by State"),
   sliderInput("yearSelector", "Select Year:", min = 2013, max = 2022, value = 2022),
-  plotOutput("mapPlot")
+  plotOutput("mapPlot"),
+  
+  fluidRow(
+    column(12, align = "center", 
+           tags$p("This map displays the total gun violence incident cases by state from 2013 to End of May 2022. The color intensity of each state corresponds to the total number of incidents, with darker red shades indicating higher incident counts. Use the slider to select a specific year and observe the variation in gun violence incidents across different states.", 
+                  style = "font-size: 16px; color: #666; margin-top: 20px;"))
+  )
 )
+
 
 # Server for rendering the map
 server_map <- function(input, output) {
@@ -82,4 +89,5 @@ server_map <- function(input, output) {
   })
 }
 
+# Run the application 
 shinyApp(ui_map, server_map)
