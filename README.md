@@ -2,10 +2,7 @@
 ## INFO 201 "Foundational Skills for Data Science" — Summer 2023
 
 Authors: 
-Lufei Chen 
-Hongye Lin 
-Shipei Huang 
-Wendy Bu 
+Lufei Chen; Hongye Lin; Shipei Huang; Wendy Bu 
 
 **Link: Link to your Shiny App here**
 https://wendyshiny.shinyapps.io/vizgunviolence/
