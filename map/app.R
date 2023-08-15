@@ -91,3 +91,4 @@ server_map <- function(input, output) {
 
 # Run the application 
 shinyApp(ui_map, server_map)
+
