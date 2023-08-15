@@ -76,68 +76,68 @@ server <- function(input, output) {
     print(total_incidents_map)
   })
   
-    # Set the server to present chart 3
-    observeEvent(input$compare, {
-      output$plot1 <- renderPlot({
-        df1 <- gun_violence_states %>% filter(state == input$state1)
-        df2 <- gun_violence_states %>% filter(state == input$state2)
-        combine_df <- rbind(df1, df2)
-        ggplot(combine_df, aes(x = state, y = n_injured_killed)) +
-          geom_segment(aes(x = state, xend = state, y = 0,
-                           yend = n_injured_killed), color = "black") +
-          geom_point(color = "red", size = 1, alpha = 0.6) +
-          theme_light() + coord_flip() +
-          labs(title =
-                 "The Number of Injured / Killed in Gun Violence of 51 States of the U.S.
+  # Set the server to present chart 3
+  observeEvent(input$compare, {
+    output$plot1 <- renderPlot({
+      df1 <- gun_violence_states %>% filter(state == input$state1)
+      df2 <- gun_violence_states %>% filter(state == input$state2)
+      combine_df <- rbind(df1, df2)
+      ggplot(combine_df, aes(x = state, y = n_injured_killed)) +
+        geom_segment(aes(x = state, xend = state, y = 0,
+                         yend = n_injured_killed), color = "black") +
+        geom_point(color = "red", size = 1, alpha = 0.6) +
+        theme_light() + coord_flip() +
+        labs(title =
+               "The Number of Injured / Killed in Gun Violence of 51 States of the U.S.
          Dec 31, 2012 - May 27, 2022", y = "Number of Injured / Killed",
-               x = "States") +
-          theme(plot.title = element_text(hjust = 0.4),
-                panel.border = element_blank(),
-                axis.ticks.y = element_blank())
-      })
+             x = "States") +
+        theme(plot.title = element_text(hjust = 0.4),
+              panel.border = element_blank(),
+              axis.ticks.y = element_blank())
     })
-    
-    observeEvent(input$update, {
-      # Code to update the plot when the button is clicked
-      output$plot1 <- renderPlot({
-        ggplot(gun_violence_states, aes(x = state, y = n_injured_killed)) +
-          geom_segment(aes(x = state, xend = state, y = 0,
-                           yend = n_injured_killed), color = "black") +
-          geom_point(color = "red", size = 1, alpha = 0.6) +
-          theme_light() + coord_flip() +
-          labs(title =
-                 "The Number of Injured / Killed in Gun Violence of 51 States of the U.S.
+  })
+  
+  observeEvent(input$update, {
+    # Code to update the plot when the button is clicked
+    output$plot1 <- renderPlot({
+      ggplot(gun_violence_states, aes(x = state, y = n_injured_killed)) +
+        geom_segment(aes(x = state, xend = state, y = 0,
+                         yend = n_injured_killed), color = "black") +
+        geom_point(color = "red", size = 1, alpha = 0.6) +
+        theme_light() + coord_flip() +
+        labs(title =
+               "The Number of Injured / Killed in Gun Violence of 51 States of the U.S.
        Dec 31, 2012 - May 27, 2022", y = "Number of Injured / Killed",
-               x = "States") +
-          theme(plot.title = element_text(hjust = 0.4),
-                panel.border = element_blank(),
-                axis.ticks.y = element_blank()
-          )
-      })
+             x = "States") +
+        theme(plot.title = element_text(hjust = 0.4),
+              panel.border = element_blank(),
+              axis.ticks.y = element_blank()
+        )
     })
-    
-    # Chart 1
-    filtered_data2 <- reactive({
-      subset(gunshot, city == input$cityInput)
-    })
-    
-    output$filteredData <- renderDataTable({
-      filtered_data2()
-    })
-    
-    #xy graph
-    output$gunshotPlot <- renderPlot({
-      ggplot(yearly_counts(), aes(x = year, y = count)) +
-        geom_point() +
-        geom_line() +
-        labs(title = paste("Gunshot Incidents in", input$cityInput, "(city)"),
-             x = "Year",
-             y = "Number of Gunshot Cases")
-    })
-    
-    yearly_counts <- reactive({
-      data <- filtered_data2()
-      data$year <- year(data$date)
-      aggregate(cbind(count = n_killed + n_injured) ~ year, data = data, sum)
-    })
+  })
+  
+  # Chart 1
+  filtered_data2 <- reactive({
+    subset(gunshot, city == input$cityInput)
+  })
+  
+  output$filteredData <- renderDataTable({
+    filtered_data2()
+  })
+  
+  #xy graph
+  output$gunshotPlot <- renderPlot({
+    ggplot(yearly_counts(), aes(x = year, y = count)) +
+      geom_point() +
+      geom_line() +
+      labs(title = paste("Gunshot Incidents in", input$cityInput, "(city)"),
+           x = "Year",
+           y = "Number of Gunshot Cases")
+  })
+  
+  yearly_counts <- reactive({
+    data <- filtered_data2()
+    data$year <- year(data$date)
+    aggregate(cbind(count = n_killed + n_injured) ~ year, data = data, sum)
+  })
 }

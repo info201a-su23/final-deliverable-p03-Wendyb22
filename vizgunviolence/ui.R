@@ -8,7 +8,7 @@ gunshot <- read.csv("https://raw.githubusercontent.com/info201a-su23/exploratory
 ui <- fluidPage(
   # Application title
   titlePanel("Gun Violence Incidents Analysis"),
-
+  
   # Tabs
   tabsetPanel(
     # Introduction
@@ -45,7 +45,8 @@ ui <- fluidPage(
                  height = "400px", width = "700px",
                  style = "position:absolute; left:100px; margin-top:50px"),
     ),
-
+    
+    
     # Chart 1
     tabPanel("Gunshoot Trending Analysis",
              p("Gunshoot is a big deal because it affects everyone, everywhere. 
@@ -88,10 +89,10 @@ ui <- fluidPage(
                              to select a specific year and observe the variation
                              in gun violence incidents across different 
                              states.",
-                             style = 
-                               "font-size: 16px; color: #666; margin-top: 20px;"
+                                    style = 
+                                      "font-size: 16px; color: #666; margin-top: 20px;"
                              )
-                     )
+             )
              )
     ),
     
@@ -122,7 +123,7 @@ ui <- fluidPage(
                              number of victims of two different states to learn
                              about the data in a different aspect which is more 
                              detailed.",
-                             style = "font-size: 16px; color: #666; margin-top: 
+                                    style = "font-size: 16px; color: #666; margin-top: 
                                       20px;"
                              )
              )
@@ -130,3 +131,7 @@ ui <- fluidPage(
     )
   )
 )
+
+
+
+
