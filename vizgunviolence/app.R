@@ -17,7 +17,7 @@ library(lubridate)
 library(shiny)
 
 # Load data
-gunshot <- read.csv("/Users/wendybu/Desktop/info201/groupproject/exploratory-analysis-p02-sc100922/all_incidents.csv")
+gunshot <- read.csv("/Users/wendybu/Desktop/info201/groupproject/final-deliverable-p03-Wendyb22/vizgunviolence/all_incidents.csv")
 
 # Add a 'year' column based on the date variable in your dataset
 gunshot$year <- lubridate::year(as.Date(gunshot$date))
@@ -63,7 +63,7 @@ ui <- fluidPage(
              p("3. Does gun violence data analysis for each US state indicate a significant public safety threat?"),
              p("To address these questions, we utilize a detailed dataset from Kaggle (\"https://www.kaggle.com/datasets/emmanuelfwerr/gun-violence-incidents-in-the-usa\") to track gun violence incidents from 2013 to 2022, including details such as the date, location, and number of casualties. By revealing the geographic and temporal dynamics of gun violence, we aim to understand potential factors to build safer communities."),
              p("However, navigating and analyzing this dataset poses significant challenges. Given that we're dealing with real tragedies, we have a responsibility to protect the privacy of victims and involved parties. Moreover, our investigation needs to respect the facts and be mindful of potential biases that might arise during the data collection process, as well as ethical considerations."),
-             img(src = "/Users/wendybu/Desktop/info201/groupproject/final-deliverable-p03-Wendyb22/image.png",
+             img(src = "/Users/wendybu/Desktop/info201/groupproject/final-deliverable-p03-Wendyb22/vizgunviolence/image.png",
                  height = "350px", width = "600px",
                  style = "position:absolute;left:100px;margin-top:50px"),
     ),
