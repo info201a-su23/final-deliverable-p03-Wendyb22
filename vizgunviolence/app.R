@@ -63,8 +63,8 @@ ui <- fluidPage(
              p("3. Does gun violence data analysis for each US state indicate a significant public safety threat?"),
              p("To address these questions, we utilize a detailed dataset from Kaggle (\"https://www.kaggle.com/datasets/emmanuelfwerr/gun-violence-incidents-in-the-usa\") to track gun violence incidents from 2013 to 2022, including details such as the date, location, and number of casualties. By revealing the geographic and temporal dynamics of gun violence, we aim to understand potential factors to build safer communities."),
              p("However, navigating and analyzing this dataset poses significant challenges. Given that we're dealing with real tragedies, we have a responsibility to protect the privacy of victims and involved parties. Moreover, our investigation needs to respect the facts and be mindful of potential biases that might arise during the data collection process, as well as ethical considerations."),
-             img(src = "www/image.jpg",
-                 height = "400px", width = "700px",
+             img(src = "/Users/wendybu/Desktop/info201/groupproject/final-deliverable-p03-Wendyb22/vizgunviolence/image.png",
+                 height = "350px", width = "600px",
                  style = "position:absolute;left:100px;margin-top:50px"),
     ),
     
@@ -79,6 +79,34 @@ ui <- fluidPage(
                       tags$p("This map displays the total gun violence incident cases by state from 2013 to End of May 2022. The color intensity of each state corresponds to the total number of incidents, with darker red shades indicating higher incident counts. Use the slider to select a specific year and observe the variation in gun violence incidents across different states.",
                              style = "font-size: 16px; color: #666; margin-top: 20px;"))
              )
+    ),
+
+    tabPanel("Gunshoot Trending Analysis",
+      p("Gunshoot is a big deal because it affects everyone, everywhere. 
+    Its far-reaching consequences impact not only individual well-being, but also 
+    economies and societies. Here we create a interactive graph which can show you the gun
+    shoot cases in different period of your interests."),
+      
+      p("We created the table below to see the shooting case in different states. Knowing more about
+   our community and the place we living is important for our safety. Users can select
+    a specific city that they are interested in, and the page will return the number of gunshot cases
+    in that given location at throughout different time period as the output"),
+      
+      #plotOutput(outputId = "plot1"),
+      #p("selected_co2_data"),
+      
+      sidebarLayout(
+        sidebarPanel(
+          selectInput("cityInput", 
+                      label = "Select city that you are interested in:", 
+                      choices = unique(gunshot$city)),
+        ),
+        
+        mainPanel(
+          plotOutput("gunshotPlot"),
+          #dataTableOutput("filteredData2")
+        )
+      ),
     )
   )
 )
@@ -110,6 +138,31 @@ server <- function(input, output) {
       coord_fixed(1.3)
     
     print(total_incidents_map)
+  })
+  
+  #Shipei's Part
+  filtered_data2 <- reactive({
+    subset(gunshot, city == input$cityInput)
+  })
+  
+  output$filteredData <- renderDataTable({
+    filtered_data2()
+  })
+  
+  #xy graph
+  output$gunshotPlot <- renderPlot({
+    ggplot(yearly_counts(), aes(x = year, y = count)) +
+      geom_point() +
+      geom_line() +
+      labs(title = paste("Gunshot Incidents in", input$cityInput, "(city)"),
+           x = "Year",
+           y = "Number of Gunshot Cases")
+  })
+  
+  yearly_counts <- reactive({
+    data <- filtered_data2()
+    data$year <- year(data$date)
+    aggregate(cbind(count = n_killed + n_injured) ~ year, data = data, sum)
   })
 }
 
