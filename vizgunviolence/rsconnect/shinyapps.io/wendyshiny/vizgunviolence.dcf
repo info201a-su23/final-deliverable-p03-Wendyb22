@@ -1,0 +1,12 @@
+name: vizgunviolence
+title: vizgunviolence
+username: wendyshiny
+account: wendyshiny
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9606172
+bundleId: 7567308
+url: https://wendyshiny.shinyapps.io/vizgunviolence/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
