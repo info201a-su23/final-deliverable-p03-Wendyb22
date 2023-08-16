@@ -24,4 +24,10 @@ To address these questions, we utilize a detailed dataset from Kaggle ("https://
 
 
 # Conclusion / Summary Takeaways
+Through the line chart, we can accurately depict the trend and fluctuations of total gun violence incidents over the past ten years (from January 2013 to May 2022). From the chart, we believe that the number of shooting cases increased from 2014 to 2016. However, since the government is imposing strict policies on gun control, we do see some gun shooting cases decrease from 2017 to 2019. 
 
+However, because of covid, the shooting cases increased quickly once the pandemic started. This is reasonable because there was high unemployment during the Covid, meaning that society was not safe as before.
+
+Through analyzing the map, we created a map to show whether there were differences in gun violence cases between states in the U.S. from 2013 to 2022. We used green to represent areas with the fewest gun violence cases, and red to represent areas with the most gun violence cases. Using a map allows for a more intuitive analysis and presentation of the correlation data between gun violence cases and geographic locations. From the map, it can be seen that Texas, California, and Illinois are presented in orange or red every year. Compared to other states, these three have the most serious gun violence situations. 
+
+Upon analyzing the lollipop chart, it's clear that there are significant differences in gun violence casualties among different states. Users are permitted to selectively view the casualty situation of each state, which is viewed through a visual chart. This comparison offers an intuitive representation of the disparities in casualties across states. Specifically, Hawaii has managed to maintain a relatively low number of casualties due to gun violence, while Illinois consistently registers a high number. This suggests a strong correlation between gun violence and the policies, economic, and societal factors specific to each state. The federal government should focus on states with the highest number of casualties, such as implementing stricter gun control policies to improve public safety.
